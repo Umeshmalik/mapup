@@ -12,7 +12,8 @@ import { Link } from "react-router-dom";
 import "./index.css"
 import Logo from "./public/Mapup.png";
 import FullLogo from "./public/Mapup-full.png";
-import OSM from './components/osm';
+import OSM from './components/OSM';
+import Form from './components/Form';
 
 const { Header, Sider: Slider, Content, Footer } = Layout;
 
@@ -82,6 +83,7 @@ const App = () => {
                         background: colorBgContainer,
                     }}
                 >
+                    <Form />
                     <OSM />
                 </Content>
                 <Footer style={{ textAlign: 'center' }}>Copyright © 2023 MapUp</Footer>
