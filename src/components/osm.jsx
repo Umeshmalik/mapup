@@ -26,7 +26,7 @@ export default function Map() {
                 id: "mapbox/streets-v11",
                 tileSize: 512,
                 zoomOffset: -1,
-                accessToken: "pk.eyJ1IjoidGFyLWhlbCIsImEiOiJjbDJnYWRieGMwMTlrM2luenIzMzZwbGJ2In0.RQRMAJqClc4qoNwROT8Umg",
+                accessToken: import.meta.env.VITE_ACCESS_TOKEN,
             }
         ).addTo(map);
         L.Marker.prototype.options.icon = DefaultIcon;
