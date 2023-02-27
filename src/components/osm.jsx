@@ -1,22 +1,37 @@
-import React, { useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
+import React, { useEffect } from "react";
+import L from "leaflet";
+import "leaflet/dist/leaflet.css";
+import icon from "leaflet/dist/images/marker-icon.png";
+import iconShadow from "leaflet/dist/images/marker-shadow.png";
 
-const OSM = () => {
-    return (
-        <div style={{ width: "90vh", height: "70vh", overflow: "hidden" }}>
-            <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false}>
-                <TileLayer
-                    attribution= '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                    url= 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-                />
-                <Marker position={[51.505, -0.09]}>
-                    <Popup>
-                        A pretty CSS3 popup. <br /> Easily customizable.
-                    </Popup>
-                </Marker>
-            </MapContainer>
-        </div>
-    );
+let DefaultIcon = L.icon({
+    iconUrl: icon,
+    shadowUrl: iconShadow,
+});
+
+export default function Map() {
+    useEffect(() => {
+        var container = L.DomUtil.get("map");
+
+        if (container != null) {
+            container._leaflet_id = null;
+        }
+        var map = L.map("map").setView([29.3909464, 76.9635023], 13);
+        L.tileLayer(
+            "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
+            {
+                attribution:
+                    'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+                maxZoom: 22,
+                id: "mapbox/streets-v11",
+                tileSize: 512,
+                zoomOffset: -1,
+                accessToken: "pk.eyJ1IjoidGFyLWhlbCIsImEiOiJjbDJnYWRieGMwMTlrM2luenIzMzZwbGJ2In0.RQRMAJqClc4qoNwROT8Umg",
+            }
+        ).addTo(map);
+        L.Marker.prototype.options.icon = DefaultIcon;
+        var marker = L.marker([29.3909464, 76.9635023]).addTo(map);
+        // marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
+    }, []);
+    return <div id="map" style={{ height: '110ch' }}></div>;
 }
-
-export default OSM;
