@@ -43,6 +43,7 @@ body {
   height: 32px;
   margin: 16px;
   transition: color 0.3s;
+  filter: invert(1);
 }
 
 .header{

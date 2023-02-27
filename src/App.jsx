@@ -35,12 +35,12 @@ const App = () => {
     return (
       <div className='app'>
         <Layout>
-            <Slider trigger={null} collapsible collapsed={collapsed}>
+            <Slider trigger={null} collapsible collapsed={collapsed} theme={"light"}>
                 <Link to="/">
                     <img src={collapsed ? Logo : FullLogo} className="logo" />
                 </Link>
                 <Menu
-                    theme="dark"
+                    theme={"light"}
                     mode="inline"
                     defaultSelectedKeys={['1']}
                     items={[
@@ -50,7 +50,7 @@ const App = () => {
                             label: 'Home',
                         },
                         {
-                            key: '3',
+                            key: '2',
                             icon: <InfoCircleOutlined />,
                             label: 'About Us',
                         },
